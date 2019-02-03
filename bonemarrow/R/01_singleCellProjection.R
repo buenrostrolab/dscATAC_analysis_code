@@ -61,17 +61,18 @@ projectCells <- function(scSE, # SE object of scATAC-seq cell profiles to score/
 
 
 # Single cell ATAC-seq counts SummarizedExperimen object
-countsFileUrl <- "../data/jdb-cell_CD34_C1sorted_matchedpeaks.rds"
+countsFilePath <- "../data/raw/jdb-cell_CD34_C1sorted_matchedpeaks.rds"
 # PC Loadings from bulk ATAC-seq counts (reference cell types)
-pcFileUrl <- "../data/pcLoadings.rds"
+pcFilePath <- "../data/raw/pcLoadings.rds"
 
 # Load single cell counts object
-SE <- readRDS(url(countsFileUrl))
+SE <- readRDS((countsFilePath))
 SE
 
 # Load bulk reference PC loadings
-pcLoadings <- readRDS(url(pcFileUrl))
+pcLoadings <- readRDS((pcFilePath))
 print(dim(pcLoadings))
 
 # Project single cell data in PC space to get single cell scores
 CD34JDBscScores <- projectCells(scSE = SE,refPCs = pcLoadings,doInChunks = TRUE)
+saveRDS(CD34JDBscScores, file = "../data/projected-pc-scores/CD34JDB.rds")
