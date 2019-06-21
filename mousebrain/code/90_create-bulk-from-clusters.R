@@ -11,8 +11,8 @@ library(GenomicRanges)
 source("../all_heme/helper_fns.R")
 
 # Create new synthetic bigwigs
-cdf <- readRDS("mousebrain-master_dataframe.rds")
-mb_anno <- read.table("revision-reanno.tsv", header = TRUE, stringsAsFactors = FALSE, sep = "\t", comment.char = "")
+cdf <- readRDS("../data/mousebrain-master_dataframe.rds")
+mb_anno <- read.table("../data/revision-cluster_annotations.tsv", header = TRUE, stringsAsFactors = FALSE, sep = "\t", comment.char = "")
 mb_trans <- as.character(mb_anno$new); names(mb_trans) <- as.character(mb_anno$old)
 cdf$new_cluster <- mb_trans[paste0("V", as.character(cdf$clusters))]
 
