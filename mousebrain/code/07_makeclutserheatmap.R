@@ -30,7 +30,7 @@ subset <- cpm.Z[boo,]
 
 subset[subset > 3] <- 3
 subset[subset < -3] <- -3
-
+splitMe <- max.col(subset, 'first')
 png(paste0("../output/mouse-brain-diffEnhancer.png"), width=5, height=7, units = "in", res = 300)
 hm <- Heatmap(subset, 
               col=as.character(jdb_palette("solar_extra",type="continuous")),
